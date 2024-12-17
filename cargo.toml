@@ -1,0 +1,4 @@
+[workspace]
+members = ["humble-triangle", "the-camera"]
+
+resolver = "2"
