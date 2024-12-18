@@ -3,7 +3,7 @@ use std::sync::Arc;
 use winit::{
     application::ApplicationHandler,
     dpi::PhysicalSize,
-    event::WindowEvent,
+    event::{Event, WindowEvent},
     window::{Window, WindowAttributes},
 };
 
@@ -58,13 +58,31 @@ impl ApplicationHandler for App {
             }
             WindowEvent::Resized(PhysicalSize { width, height }) => {
                 render_engine.resize(width, height);
+                window.request_redraw();
             }
             WindowEvent::CloseRequested => {
                 event_loop.exit();
             }
-            WindowEvent::RedrawRequested => render_engine.render_frame(),
+            WindowEvent::RedrawRequested => {
+                render_engine.update();
+                render_engine.render_frame()
+            }
             _ => (),
         }
-        window.request_redraw();
+    }
+
+    fn device_event(
+        &mut self,
+        event_loop: &winit::event_loop::ActiveEventLoop,
+        device_id: winit::event::DeviceId,
+        event: winit::event::DeviceEvent,
+    ) {
+        let (Some(window), Some(render_engine)) =
+            (self.window.as_ref(), self.render_engine.as_mut())
+        else {
+            return;
+        };
+
+        render_engine.process_event(&event, &window);
     }
 }

@@ -28,17 +28,40 @@ impl Vertex {
 
 pub const VERTICES: &[Vertex] = &[
     Vertex {
-        position: [0.0, 0.5, 0.0],
+        position: [-0.5, 0.5, 0.5],
         color: [1.0, 0.0, 0.0],
     },
     Vertex {
-        position: [-0.5, -0.5, 0.0],
+        position: [-0.5, -0.5, 0.5],
         color: [0.0, 1.0, 0.0],
     },
     Vertex {
-        position: [0.5, -0.5, 0.0],
+        position: [0.5, -0.5, 0.5],
         color: [0.0, 0.0, 1.0],
+    },
+    Vertex {
+        position: [0.5, 0.5, 0.5],
+        color: [1.0, 1.0, 0.0],
+    },
+    Vertex {
+        position: [-0.5, 0.5, -0.5],
+        color: [1.0, 0.0, 1.0],
+    },
+    Vertex {
+        position: [-0.5, -0.5, -0.5],
+        color: [0.0, 1.0, 1.0],
+    },
+    Vertex {
+        position: [0.5, -0.5, -0.5],
+        color: [0.5, 0.0, 0.0],
+    },
+    Vertex {
+        position: [0.5, 0.5, -0.5],
+        color: [0.0, 0.5, 0.0],
     },
 ];
 
-pub const INDICES: &[u16] = &[0, 1, 2];
+pub const INDICES: &[u16] = &[
+    0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 0, 1, 5, 0, 5, 4, 3, 2, 6, 3, 6, 7, 0, 4, 7, 0, 7, 3, 1, 5,
+    6, 1, 6, 2,
+];

@@ -1,8 +1,12 @@
 use app::App;
 use winit::event_loop::EventLoop;
 mod app;
+mod camera;
+mod global_bindings;
 mod mesh;
 mod render_engine;
+mod texture;
+mod wgpu_utils;
 
 fn main() {
     let event_loop = EventLoop::new().unwrap();
